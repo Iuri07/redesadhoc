@@ -1,0 +1,30 @@
+/* FONTS */
+/*font-family: 'Abril Fatface', cursive;
+font-family: 'Notable', sans-serif;
+font-family: 'Cuprum', sans-serif; */
+body{
+    font-family: 'Cuprum', sans-serif; 
+    font-size: 20px;
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.title{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 72px;
+    text-align: center;
+    width: 100%;
+}
+
+.sub-title{
+    font-family: 'Merriweather', serif;
+    font-size: 30px;
+    
+}
+
+.text{
+    text-indent: 3em;
+    margin-top: 10px;
+}
