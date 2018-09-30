@@ -12,25 +12,60 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title"> Protocolos de Redes Ad Hoc</h1>  
-        <h2 class="sub-title">1. Introdução</h2>
-        <p class="text">
-            Uma rede ad hoc sem fio é um tipo de rede descentralizada que não depende de uma infraestrutura pré-existente, como roteadores ou pontos de acesso. Nela os nós atuam tanto como hosts quanto como roteadores. Eles possuem livre movimentação no espaço, e podem entrar ou sair da rede à qualquer instante. A topologia da rede está, também, em constante mudança com a variação de distâncias entre os dispositivos. Assim, redes ad hoc devem ser capazes de lidar com desconexões frequentes, atraso variante e perda de pacotes. Devido à cobertura limitada do sinal de cada nó a rede depende de protocolos de roteamento multi-hop.
-        </p>
-        <p class="text">
-            Esse modelo de rede é útil em casos que a infraestrutura é inexiste ou não pode ser confiada como por exemplo em situações militares no campo de batalha, série de sensores espalhados em uma região para monitoramento biológico, ou uma rede de laptops em uma sala de aula ou conferência.
-            [escrever sobre cada um dos 6 pontos de research on routing protocols?]
-            [tabela das diferenças?]
-        </p>
-        <h2 class="sub-title">2. História</h2>
-        <p class="text">
-            Modelos de redes similares à ad hoc datam desde os anos 70 e 80, onde projetos financiados pela Defense Advanced Research Projects Agency (DARPA) foram criados com fins militares. A Packet Radio Network e a Survivable Adaptive Radio Network buscavam providenciar uma rede móvel no campo de batalha sem infraestrutura.
-        </p>
-        <p class="text">
-            É nos anos 90 que o termo rede ad hoc é adotado pelo sub comitê do IEEE 802.11. Com a popularização de laptops e outros equipamentos de comunicação o interesse em uma rede sem infraestrutura para fins não militares começa a crescer. Assim, são criados grupos que buscavam padronizar protocolos de roteamento das MANET.
-        </p>
-        <h2 class="sub-title">3. Desafios</h2>
-        <h2 class="sub-title">4. Protocolos</h2>
+        <h1 class="title"> Protocolos de Redes Ad Hoc</h1>
+        <div class="authors"> por Antonio Kós e Iuri Costermani</div>  
+            <h2 class="sub-title">1. Introdução</h2>
+                <p class="text">
+                    Uma rede ad hoc sem fio é um tipo de rede descentralizada que não depende de uma infraestrutura pré-existente, como roteadores ou pontos de acesso. Nela os nós atuam tanto como hosts quanto como roteadores. Eles possuem livre movimentação no espaço, e podem entrar ou sair da rede à qualquer instante. A topologia da rede está, também, em constante mudança com a variação de distâncias entre os dispositivos. Assim, redes ad hoc devem ser capazes de lidar com desconexões frequentes, atraso variante e perda de pacotes. Devido à cobertura limitada do sinal de cada nó a rede depende de protocolos de roteamento multi-hop.
+                </p>
+                <p class="text">
+                    Esse modelo de rede é útil em casos que a infraestrutura é inexiste ou não pode ser confiada como por exemplo em situações militares no campo de batalha, série de sensores espalhados em uma região para monitoramento biológico, ou uma rede de laptops em uma sala de aula ou conferência.
+                    [escrever sobre cada um dos 6 pontos de research on routing protocols?]
+                    [tabela das diferenças?]
+                </p>
+            <h2 class="sub-title">2. História</h2>
+                <p class="text">
+                    Modelos de redes similares à ad hoc datam desde os anos 70 e 80, onde projetos financiados pela Defense Advanced Research Projects Agency (DARPA) foram criados com fins militares. A Packet Radio Network e a Survivable Adaptive Radio Network buscavam providenciar uma rede móvel no campo de batalha sem infraestrutura.
+                </p>
+                <p class="text">
+                    É nos anos 90 que o termo rede ad hoc é adotado pelo sub comitê do IEEE 802.11. Com a popularização de laptops e outros equipamentos de comunicação o interesse em uma rede sem infraestrutura para fins não militares começa a crescer. Assim, são criados grupos que buscavam padronizar protocolos de roteamento das MANET.
+                </p>
+            
+            <h2 class="sub-title">3. Desafios</h2>
+                <h3 class="sub-sub-title">3.1 Instabilidade</h3>
+                    <p class="text">
+                        A natureza altamente dinâmica das redes ad hoc traz um alto grau de instabilidade relacionado. À qualquer momento nós que se comunicavam diretamente podem ficar fora do alcance um do outro, nós podem deixar a rede e outros podem entrar. [Muitas vezes existe um muito ruido e interferência associada]
+                    </p>
+                <h3 class="sub-sub-title">3.1 Escalabilidade</h3>
+                    <p class="text">
+                        Assim como em redes cabeadas, as redes ad hoc sem fio enfrentam problemas relacionados à escalabilidade. Essa questão envolve o aumento da complexidade e do custo do roteamento relacionado ao aumento do número de nós e mudanças dos enlaces. 
+                    </p>
+                <h3 class="sub-sub-title">3.3 Segurança</h3>
+                    <p class="text">
+                        O ambiente potencialmente inseguro em um meio de rádio compartilhado deixa as redes ad hoc suscetíveis à ataques de DoS, com atacantes mais difíceis de serem encontrados do que em redes cabeadas [pesquisar?]. Esses ataques podem ser usados também com o objetivo de esgotar a bateria dos nós da rede.
+                    </p>
+                    <p class="text">
+                        Além disso, como as redes constantemente se organizam e cada nó pode passar repassar pacotes pros outros elas são particularmente suscetíveis à possíveis controles de tráfego maliciosos. 
+                    </p>
+                <h3 class="sub-sub-title">3.1 ENergia</h3>
+                    <p class="text">
+                        A rede não assume a existência de uma infraestrutura, então nós individuais podem depender de uma fonte de energia portátil e limitada. Dessa forma se torna necessário a existência de mecanismos de economia de energia.    
+                    </p>                 
+
+            <h2 class="sub-title">4. Protocolos</h2>
+                <h3 class="sub-sub-title">4.1 Protocolos Proativos (Table-driven)</h3>
+                    <h3 class="sub-sub-sub-title">4.1.1 DSDV</h3>
+                    <h3 class="sub-sub-sub-title">4.1.2 OLSR</h3>
+                <h3 class="sub-sub-title">4.2 Protocolos Reativos (On-demand)</h3>
+                    <h3 class="sub-sub-sub-title">4.2.1 DSR</h3>
+                    <h3 class="sub-sub-sub-title">4.2.2 AODV</h3>
+                <h3 class="sub-sub-title">4.3 Protocolos Híbridos</h3>
+                    <h3 class="sub-sub-sub-title">4.3.1 ZRP</h3>
+
+            <h2 class="sub-title">5. Futuro da tecnologia</h2>
+            <h2 class="sub-title">6. Conclusão</h2>
+
+            
     </div>
 </body>
 </html>
