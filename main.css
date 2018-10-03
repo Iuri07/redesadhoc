@@ -40,4 +40,9 @@ body{
     margin-top: 10px;
     width: 98%;
     margin-left: auto;
+    text-align: justify;
+}
+
+.biblio{
+    text-indent: 0;
 }
