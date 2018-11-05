@@ -108,16 +108,20 @@ ul ul a {
 }
 
 .sub-title{
-    font-family: 'Merriweather', serif;
-    font-size: 30px;
+    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .sub-sub-title{
     margin-left: 1em;
+    margin-top: 30px;
+    margin-bottom: 25px;
 }
 
 .sub-sub-sub-title{
+    margin-top: 30px;
     margin-left: 2em;
+    margin-bottom: 25px;
 }
 
 .text{
@@ -131,6 +135,27 @@ ul ul a {
 .biblio{
     text-indent: 0;
 }
+
+table{
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+
+/* tr{
+    border-top: 1px solid lightgray;
+
+}
+
+tr:first-child {
+    border-top: none;
+  }
+  tr:last-child {
+    border-bottom: none;
+  } */
 
 
 /* ---------------------------------------------------

@@ -83,9 +83,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a onclick="scrollToId('futuro');">Futuro da Tecnologia</a>
-                </li>
-                <li>
                     <a onclick="scrollToId('conclusao');">Conclusão</a>
                 </li>
                 <li>
@@ -119,42 +116,151 @@
                         </p>
                     
                     <h2 class="sub-title">3. Desafios</h2>
-                        <h3 class="sub-sub-title" id="instabilidade">3.1 Instabilidade</h3>
+                        <h3 class="sub-sub-title" id="instabilidade">3.1. Instabilidade</h3>
                             <p class="text">
                                 A natureza altamente dinâmica das redes ad hoc traz um alto grau de instabilidade relacionado. À qualquer momento nós que se comunicavam diretamente podem ficar fora do alcance um do outro, nós podem deixar a rede e outros podem entrar. [Muitas vezes existe um muito ruido e interferência associada]
                             </p>
-                        <h3 class="sub-sub-title" id="escalabilidade">3.1 Escalabilidade</h3>
+                        <h3 class="sub-sub-title" id="escalabilidade">3.2. Escalabilidade</h3>
                             <p class="text">
                                 Assim como em redes cabeadas, as redes ad hoc sem fio enfrentam problemas relacionados à escalabilidade. Essa questão envolve o aumento da complexidade e do custo do roteamento relacionado ao aumento do número de nós e mudanças dos enlaces. 
                             </p>
-                        <h3 class="sub-sub-title" id="seguranca">3.3 Segurança</h3>
+                        <h3 class="sub-sub-title" id="seguranca">3.3. Segurança</h3>
                             <p class="text">
                                 O ambiente potencialmente inseguro em um meio de rádio compartilhado deixa as redes ad hoc suscetíveis à ataques de DoS, com atacantes mais difíceis de serem encontrados do que em redes cabeadas [pesquisar?]. Esses ataques podem ser usados também com o objetivo de esgotar a bateria dos nós da rede.
                             </p>
                             <p class="text">
                                 Além disso, como as redes constantemente se organizam e cada nó pode passar repassar pacotes pros outros elas são particularmente suscetíveis à possíveis controles de tráfego maliciosos. 
                             </p>
-                        <h3 class="sub-sub-title" id="energia">3.1 Energia</h3>
+                        <h3 class="sub-sub-title" id="energia">3.4. Energia</h3>
                             <p class="text">
                                 A rede não assume a existência de uma infraestrutura, então nós individuais podem depender de uma fonte de energia portátil e limitada. Dessa forma se torna necessário a existência de mecanismos de economia de energia.    
                             </p>                 
     
                     <h2 class="sub-title">4. Protocolos</h2>
-                        <h3 class="sub-sub-title">4.1 Protocolos Proativos (Table-driven)</h3>
-                            <h3 class="sub-sub-sub-title" id="dsdv">4.1.1 DSDV</h3>
-                            <h3 class="sub-sub-sub-title" id="olsr">4.1.2 OLSR</h3>
-                        <h3 class="sub-sub-title">4.2 Protocolos Reativos (On-demand)</h3>
-                            <h3 class="sub-sub-sub-title" id="dsr">4.2.1 DSR</h3>
-                            <h3 class="sub-sub-sub-title" id="aodv">4.2.2 AODV</h3>
-                        <h3 class="sub-sub-title">4.3 Protocolos Híbridos</h3>
-                            <h3 class="sub-sub-sub-title" id="zrp">4.3.1 ZRP</h3>
+                        <h3 class="sub-sub-title">4.1. Protocolos Proativos (Table-driven)</h3>
+                            <p class="text">
+                                Protocolos proativos são caracterizados por cada nó possuir a completa tabela de roteamento. Quando alterações são feitas na topologia da rede todos os nós precisam ser avisados para terem suas tabelas atualizadas. Assim, todos dispositivos possuem rotas para todos os outros a todo momento. Esses protocolos adaptam algoritmos existentes usados em redes comuns.
+                            </p>
+                            <h3 class="sub-sub-sub-title" id="dsdv">4.1.1. DSDV</h3>
+                                <p class="text">
+                                    O protocolo DSDV, ou Destination Sequenced Distance Vector, é baseado no algoritmo de roteamento Bellman-Ford e adapta o RIP, usado em redes fixas. Nele, as estações possuem tabelas completas com todos os destinos da rede e número de saltos até eles. Os dispositivos periodicamente enviam suas tabelas buscando manter consistência entre todos da rede, e transmitem atualizações significativas imediatamente quando ocorrem.
+                                </p>
+                                <p class="text">
+                                    A tabela de roteamento possui quatro campos principais: destina, próximo salto, métrica (número de saltos) e número de sequência. O número de sequência é gerado pelo nó destino, sendo incrementado sempre que ele mandar novas informações, e é usado na detecção de rotas obsoletas. Quando um nó recebe uma mensagem com novas informações ele primeiro checa o número de sequência. Se o número de um destino for maior que o presente atualmente na tabela ele atualiza a rota. Se for o mesmo número que o atual é feita a checagem da métrica, e a rota com a menor é escolhida.
+                                </p>
+                                <table >
+                                    <tr>
+                                        <th>Destino</th>
+                                        <th>Próximo Salto</th> 
+                                        <th>Métrica</th>
+                                        <th>Número de Seq.</th>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                        <td>A</td> 
+                                        <td>0</td>
+                                        <td>A 22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B</td>
+                                        <td>B</td> 
+                                        <td>1</td>
+                                        <td>B 12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>C</td>
+                                        <td>B</td> 
+                                        <td>2</td>
+                                        <td>C 8</td>
+                                    </tr>
+                                </table>
+                                <p class="text">
+                                    Para diminuir a quantidade de dados transmitidas os nós possuem dois modos de transmissão de tabela de roteamento. No modo <i>full dump</i> a tabela inteira é enviada para os vizinhos. Em ocasiões onde a rede está relativamente estável mensagens <i>full dump</i> podem acontecer com frequência relativamente baixa. Já o modo incremental são compartilhadas as penas as rotas que sofreram mudanças desde o último <i>full dump</i>. Quando alterações na rede começam a ficar muito frequentes um <i>full dump</i> é lançado.
+                                </p>
+                                <p class="text">
+                                    O DSDV possui tempo de atraso de encontrar rotas muito baixo, posto que todos os dispositivos sempre tem uma tabela de roteamento atualizada. Por outro lado, a constante troca de mensagens de controle ocupa banda e gasta energia dos dispositivos.
+                                </p>
+                            <h3 class="sub-sub-sub-title" id="olsr">4.1.2. OLSR</h3>
+                                <p class="text">
+                                    OLSR, ou Optimized Link State Routing Protocol, é um protocolo de roteamento de estado de enlace. Diferente de implementações clássicas do estado de enlace o OLSR se baseia no uso de <i>Multipoint Relays</i> (MPRs). Ao invés de todos os nós da rede realizarem o <i>flooding</i> (inundação), apenas alguns selecionados (os MPRs) ficam responsáveis por retransmitir mensagens de controle. Diminuindo, assim, o número de mensagens redundantes (<i>overhead</i>). Cada nó é responsável por selecionar seus MPRs, garantindo que exista caminho para todos vizinhos à dois saltos de distância passando por um MPR. Vizinhos diretos são encontrados pelas mensagens <i>Hello</i>, e vizinhos à dois saltos são encontrados pelas respostas dos diretos.
+                                </p>
+                                <p class="text">
+                                    O protocolo não depende de transmissão confiável de dados. Os nós transmitem periodicamente seus dados, criando uma razoável tolerância à perdas. Mensagens de controle contém números de sequência, o que permite que os nós possam identificar informações mais recentes.
+                                </p>
+                                <p class="text">
+                                    Por ser proativo, as rotas no OSPR estão disponíveis prontamente, então não há grande atraso associado à busca de rotas. Além disso, a otimização com os MPRs garante certa escalabilidade ao tamanho da rede. Por outro lado existe um custo computacional associado ao cálculo de rotas ótimas que, junto com as transmissões periódicas de mensagens, levam à um gasto de energia considerável.
+                                </p>
+                        <h3 class="sub-sub-title">4.2. Protocolos Reativos (On-demand)</h3>
+                            <p class="text">
+                                Nos protocolos reativos a fonte só vai procurar uma rota quando quiser enviar uma mensagem. Dessa forma, os nós não possuem a tabela da topologia completa, e não são necessárias mensagens de controle sendo trocadas constantemente. 
+                            </p>
+                            <h3 class="sub-sub-sub-title" id="dsr">4.2.1. DSR</h3>
+                                <p class="text">
+                                    O protocolo DSR, Dynamic Source Routing, se baseia em dois principais processos: descoberta de rota e manutenção de rota.
+                                </p>
+                                <p class="text">
+                                    O processo de descoberta é iniciado quando uma fonte deseja se comunicar com um nó destino e não possui nenhuma rota <i>cacheada</i> para ele. A fonte envia uma mensagem para todos seus vizinhos buscando o destino. Não sendo o destino, o nó vizinho adicionará um identificador próprio à mensagem e retransmitirá ela aos seus vizinhos. Quando essa mensagem de busca chega ao nó alvo ele devolve a mensagem, que agora contém todos os nós intermediários, à origem. Assim a fonte descobre um ou mais caminhos possíveis e os armazena. 
+                                </p>
+                                <p class="text">
+                                    O processo de manutenção serve para checar a validade de rotas armazenadas. Se durante o envio de uma mensagem um nó for detectado como inválido ou inexistente o nó fonte é informado e a rota que utilizava esse nó é retirada da tabela. Caso a fonte possua uma rota alternativa armazenada ela pode usar, caso contrário o processo de descoberta deve ser rodado novamente.
+                                </p>
+                                <p class="text">
+                                    Por ser reativo, esse protocolo tem um <i>overhead</i> relacionado às mensagens de controle muito baixo quando comparado aos proativos. Não existe a necessidade de inundações periódicas que gastam energia e ocupam a banda. Por outro lado o tempo de estabelecimento de uma rota pode ser bem maior, pois todos os caminhos não estão disponíveis sempre. Além disso, como todos os roteadores intermediários em uma rota são armazenados, as tabelas de rotas <i>cacheadas</i> podem se tornar extensas em redes grandes.
+                                </p>
+                            <h3 class="sub-sub-sub-title" id="aodv">4.2.2. AODV</h3>
+                                <p class="text">
+                                    O protocolo AODV, On-Demand Distance Vector, pode ser tratado como uma extensão do DSDV para torná-lo reativo. Assim como no DSR, o processo de descoberta de rota só é iniciado quando a fonte não possui nenhuma rota válida para um destino e deseja enviar uma mensagem para ele. 
+                                </p>
+                                <p class="text">
+                                    A tabela de roteamento armazenada no nó é similar à do DSDV, possui destino, próximo salto, número de saltos e número de sequência. Cada nó possui um número de sequência associado que é usado para verificar a validade de um pedido ou resposta (se é mais antigo ou mais novo do que a informação presente atualmente), diminuindo situações de atualizações com informações obsoletas e prevenindo loops.
+                                </p>
+                                <p class="text">
+                                    Um nó quando verifica que um vizinho seu está indisponível manda para rede uma mensagem avisando o ocorrido, fazendo com que rotas que usassem o vizinho sejam descartadas.
+                                </p>
+                                <p class="text">
+                                    Por não armazenar todos os dispositivos no caminho de uma rota, como o DSDV, o protocolo possui tabela de roteamento ocupando menos espaço, sendo mais adequado para redes maiores.
+                                </p>
+                        <h3 class="sub-sub-title">4.3. Protocolos Híbridos</h3>
+                            <p class="text">
+                                Protocolos híbridos buscam aproveitar os benefícios dos dois métodos, alternando entre o uso de roteamento proativo e reativo dependendo da necessidade.
+                            </p>
+                            <h3 class="sub-sub-sub-title" id="zrp">4.3.1. ZRP</h3>
+                                <p class="text">
+                                    O ZRP, Zone Routing Protocol, estabelece o conceito de zonas para otimizar o uso dos protocolos existentes. Uma zona é determinada por um raio de distância (em número de saltos) de um nó. Para interagir com nós dentro de sua zona, uma fonte usa uma tabela de roteamento feita através de um protocolo proativo. Assim a rota é determinada imediatamente para nós próximos.
+                                </p>
+                                <p class="text">
+                                    Quando a interação é feita com um nó fora de sua zona o processo de descobrimento de rota começa. O nó se comunica com nós na borda de sua zona, que, por sua vez buscam nas próprias zonas o nó destino. Se encontrarem a rota pode ser acessada instantaneamente (proativo). Caso contrário o processo de descoberta continua e os nós das bordas seguintes são comunicados.
+                                </p>
     
-                    <h2 class="sub-title" id="futuro">5. Futuro da tecnologia</h2>
-                    <h2 class="sub-title" id="conclusao">6. Conclusão</h2>
-                    <h3 class="sub-title" id="perguntas">7. Perguntas</h2>
-                        <h3 class="sub-sub-title">7.1 O que define uma rede Ad Hoc?</h3>
-                        <h3 class="sub-sub-title">7.2 Qual a diferença entre protocolos proativos e reativos das redes Ad Hoc?</h3>
-                    <h3 class="sub-title" id="biblio">8. Bibliografia</h2>
+                    <h2 class="sub-title" id="conclusao">5. Conclusão</h2>
+                                <p class="text">
+                                    É por causa dessa natureza, também, que surgem os vários desafios e obstáculos: elevado grau de instabilidade, gasto de bateria limitado, falta  de escalabilidade, entre outros. Nesse cenário surgem os vários protocolos diferentes, cada um tentando resolver problemas não resolvidos pelos outros ou ser mais apropriado para determinadas condições. Por ainda não existir algoritmo perfeito, o campo das redes ad hoc ainda é altamente estudado e trabalhado.
+                                </p>
+                                <p class="text">
+                                    Com o avanço da eletrônica e computação, dispositivos estão cada vez mais numerosos, resilientes, autônomos e precisando se interagir uns com os outros, e é por isso que as redes ad hoc continuarão tendo grande importância.
+                                </p>
+                    <h2 class="sub-title" id="perguntas">6. Perguntas</h2>
+                        <h3 class="sub-sub-title">6.1. O que define uma rede Ad Hoc?</h3>
+                            <p class="text">
+                                Uma rede ad hoc sem fio é um tipo de rede descentralizada que não depende de uma infraestrutura pré-existente. Nela os nós atuam tanto como hosts quanto como roteadores. Eles possuem livre movimentação no espaço, e podem entrar ou sair da rede à qualquer instante.
+                            </p>
+                        <h3 class="sub-sub-title">6.2. Qual a diferença entre protocolos proativos e reativos das redes Ad Hoc?</h3>
+                            <p class="text">
+                                Em protocolos proativos todos os nós possuem a completa tabela de roteamento, e ela é periodicamente atualizada. Nos protocolos reativos um dispositivo só vai buscar uma rota quando quiser se comunicar com outro, diminuindo a necessidade de mensagens de controle.
+                            </p>
+                        <h3 class="sub-sub-title">6.3. Qual a função dos Multipoint Relays no protocolo OLSR?</h3>
+                            <p class="text">
+                                Os MPRs são responsáveis por retransmitir as mensagens de controle. Eles são eleitos com o objetivo de minimizar o número de mensagens redundantes na rede, otimizando o processo de inundação.
+                            </p>
+                        <h3 class="sub-sub-title">6.4. Por que os protocolos OLSR e DSDV tem problemas de gasto energético? Como os protocolos reativos contornam esse problema?</h3>
+                            <p class="text">
+                                Por enviarem mensagens periodicamente, buscando tabela de roteamento atualizada e igual em todos os nós da rede, os nós nos protocolos OLSR e DSDV estão funcionando constantemente, gastando bateria. Nos protocolos reativos essa mensagem periódica não existe, então nós só precisam se comunicar quando estão procurando uma rota nova (ou de fato transmitindo dados).
+                            </p>
+                        <h3 class="sub-sub-title">6.5. O que é um protocolo Ad Hoc Híbrido?</h3>
+                            <p class="text">
+                                Protocolos híbridos buscam aproveitar os benefícios dos dois métodos, alternando entre o uso de roteamento proativo e reativo dependendo da necessidade. É o caso do ZRP, que usa o roteamento proativo para nós próximos e busca nós mais distantes através do roteamento reativo.
+                            </p>
+                    <h2 class="sub-title" id="biblio">7. Bibliografia</h2>
                         <ol>
                             <li><p class="text biblio" >
                                 R. Ramanathan e J. Redi, “A brief overview of ad hoc networks: challenges and directions”, IEEE Communications Magazine, vol. 40, nº 5, p. 20–22, maio 2002.
