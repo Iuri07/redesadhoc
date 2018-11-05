@@ -1,86 +1,199 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta http-equiv="content-type"content="text/html;charset=utf-8" />
-    <link rel="stylesheet" href="main.css">
-    <script src="main.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Protocolos de Redes Ad Hoc4</title>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Cuprum|Merriweather|Notable" rel="stylesheet">
-    <title>Protocolos de Redes Ad Hoc</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1 class="title"> Protocolos de Redes Ad Hoc</h1>
-        <div class="authors"> por Antonio Kós e Iuri Costermani</div>  
-            <h2 class="sub-title">1. Introdução</h2>
-                <p class="text">
-                    Uma rede ad hoc sem fio é um tipo de rede descentralizada que não depende de uma infraestrutura pré-existente, como roteadores ou pontos de acesso. Nela os nós atuam tanto como hosts quanto como roteadores. Eles possuem livre movimentação no espaço, e podem entrar ou sair da rede à qualquer instante. A topologia da rede está, também, em constante mudança com a variação de distâncias entre os dispositivos. Assim, redes ad hoc devem ser capazes de lidar com desconexões frequentes, atraso variante e perda de pacotes. Devido à cobertura limitada do sinal de cada nó a rede depende de protocolos de roteamento multi-hop.
-                </p>
-                <p class="text">
-                    Esse modelo de rede é útil em casos que a infraestrutura é inexiste ou não pode ser confiada como por exemplo em situações militares no campo de batalha, série de sensores espalhados em uma região para monitoramento biológico, ou uma rede de laptops em uma sala de aula ou conferência.
-                </p>
-            <h2 class="sub-title">2. História</h2>
-                <p class="text">
-                    Modelos de redes similares à ad hoc datam desde os anos 70 e 80, onde projetos financiados pela Defense Advanced Research Projects Agency (DARPA) foram criados com fins militares. A Packet Radio Network e a Survivable Adaptive Radio Network buscavam providenciar uma rede móvel no campo de batalha sem infraestrutura.
-                </p>
-                <p class="text">
-                    É nos anos 90 que o termo rede ad hoc é adotado pelo sub comitê do IEEE 802.11. Com a popularização de laptops e outros equipamentos de comunicação o interesse em uma rede sem infraestrutura para fins não militares começa a crescer. Assim, são criados grupos que buscavam padronizar protocolos de roteamento das MANET.
-                </p>
-            
-            <h2 class="sub-title">3. Desafios</h2>
-                <h3 class="sub-sub-title">3.1 Instabilidade</h3>
-                    <p class="text">
-                        A natureza altamente dinâmica das redes ad hoc traz um alto grau de instabilidade relacionado. À qualquer momento nós que se comunicavam diretamente podem ficar fora do alcance um do outro, nós podem deixar a rede e outros podem entrar. [Muitas vezes existe um muito ruido e interferência associada]
-                    </p>
-                <h3 class="sub-sub-title">3.1 Escalabilidade</h3>
-                    <p class="text">
-                        Assim como em redes cabeadas, as redes ad hoc sem fio enfrentam problemas relacionados à escalabilidade. Essa questão envolve o aumento da complexidade e do custo do roteamento relacionado ao aumento do número de nós e mudanças dos enlaces. 
-                    </p>
-                <h3 class="sub-sub-title">3.3 Segurança</h3>
-                    <p class="text">
-                        O ambiente potencialmente inseguro em um meio de rádio compartilhado deixa as redes ad hoc suscetíveis à ataques de DoS, com atacantes mais difíceis de serem encontrados do que em redes cabeadas [pesquisar?]. Esses ataques podem ser usados também com o objetivo de esgotar a bateria dos nós da rede.
-                    </p>
-                    <p class="text">
-                        Além disso, como as redes constantemente se organizam e cada nó pode passar repassar pacotes pros outros elas são particularmente suscetíveis à possíveis controles de tráfego maliciosos. 
-                    </p>
-                <h3 class="sub-sub-title">3.1 Energia</h3>
-                    <p class="text">
-                        A rede não assume a existência de uma infraestrutura, então nós individuais podem depender de uma fonte de energia portátil e limitada. Dessa forma se torna necessário a existência de mecanismos de economia de energia.    
-                    </p>                 
+    <script type="text/javascript">
+        function scrollToId(id){
+            document.getElementById(id).scrollIntoView({
+                block: 'start', 
+                behavior: 'smooth'
+            });
+        }
+    </script>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Índice</h3>
+            </div>
 
-            <h2 class="sub-title">4. Protocolos</h2>
-                <h3 class="sub-sub-title">4.1 Protocolos Proativos (Table-driven)</h3>
-                    <h3 class="sub-sub-sub-title">4.1.1 DSDV</h3>
-                    <h3 class="sub-sub-sub-title">4.1.2 OLSR</h3>
-                <h3 class="sub-sub-title">4.2 Protocolos Reativos (On-demand)</h3>
-                    <h3 class="sub-sub-sub-title">4.2.1 DSR</h3>
-                    <h3 class="sub-sub-sub-title">4.2.2 AODV</h3>
-                <h3 class="sub-sub-title">4.3 Protocolos Híbridos</h3>
-                    <h3 class="sub-sub-sub-title">4.3.1 ZRP</h3>
+            <ul class="list-unstyled components">
+                <li>
+                    <a onclick="scrollToId('intro');">Introdução</a>
+                </li>
+                <li>
+                    <a onclick="scrollToId('hist');">História</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Desafios</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a onclick="scrollToId('instabilidade');">Instabilidade</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('escalabilidade');">Escalabilidade</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('seguranca');">Segurança</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('energia');">Energia</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Protocolos</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a onclick="scrollToId('dsdv');">DSDV</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('olsr');">OLSR</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('dsr');">DSR</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('aodv');">AODV</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToId('zrp');">ZRP</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a onclick="scrollToId('futuro');">Futuro da Tecnologia</a>
+                </li>
+                <li>
+                    <a onclick="scrollToId('conclusao');">Conclusão</a>
+                </li>
+                <li>
+                    <a onclick="scrollToId('perguntas');">Perguntas</a>
+                </li>
+                <li>
+                    <a onclick="scrollToId('biblio');">Bibliografia</a>
+                </li>
+            </ul>
 
-            <h2 class="sub-title">5. Futuro da tecnologia</h2>
-            <h2 class="sub-title">6. Conclusão</h2>
-            <h3 class="sub-title">7. Perguntas</h2>
-                <h3 class="sub-sub-title">7.1 O que define uma rede Ad Hoc?</h3>
-                <h3 class="sub-sub-title">7.2 Qual a diferença entre protocolos proativos e reativos das redes Ad Hoc?</h3>
-            <h3 class="sub-title">8. Bibliografia</h2>
-                <ol>
-                    <li><p class="text biblio">
-                        R. Ramanathan e J. Redi, “A brief overview of ad hoc networks: challenges and directions”, IEEE Communications Magazine, vol. 40, nº 5, p. 20–22, maio 2002.
-                    </p></li>
-                    <li><p class="text biblio">
-                        D. Niu, Y. Zhang, Y. Zhao, e M. Yang, “Research on Routing Protocols in Ad Hoc Networks”, in 2009 International Conference on Wireless Networks and Information Systems, 2009.
-                    </p></li>
-                    <li><p class="text biblio">
-                        L. Chi, Z. Hao, C. Yao, Y. Zhang, K. Wang, e Y. Sun, “A Simulation and Research of Routing Protocol for Ad hoc Mobile Networks”, in 2006 IEEE International Conference on Information Acquisition, 2006.
-                    </p></li>
-                    <li><p class="text biblio">
-                        N. Gupta e R. Gupta, “Routing protocols in Mobile Ad-Hoc Networks: An overview”, in INTERACT-2010, 2010.
-                    </p></li>
-                </ol>
-            
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+                <h1 class="title"> Protocolos de Redes Ad Hoc</h1>
+                <div class="authors"> por Antonio Kós e Iuri Costermani</div>  
+                    <h2 class="sub-title" id="intro">1. Introdução</h2>
+                        <p class="text">
+                            Uma rede ad hoc sem fio é um tipo de rede descentralizada que não depende de uma infraestrutura pré-existente, como roteadores ou pontos de acesso. Nela os nós atuam tanto como hosts quanto como roteadores. Eles possuem livre movimentação no espaço, e podem entrar ou sair da rede à qualquer instante. A topologia da rede está, também, em constante mudança com a variação de distâncias entre os dispositivos. Assim, redes ad hoc devem ser capazes de lidar com desconexões frequentes, atraso variante e perda de pacotes. Devido à cobertura limitada do sinal de cada nó a rede depende de protocolos de roteamento multi-hop.
+                        </p>
+                        <p class="text">
+                            Esse modelo de rede é útil em casos que a infraestrutura é inexiste ou não pode ser confiada como por exemplo em situações militares no campo de batalha, série de sensores espalhados em uma região para monitoramento biológico, ou uma rede de laptops em uma sala de aula ou conferência.
+                        </p>
+                    <h2 class="sub-title" id="hist">2. História</h2>
+                        <p class="text">
+                            Modelos de redes similares à ad hoc datam desde os anos 70 e 80, onde projetos financiados pela Defense Advanced Research Projects Agency (DARPA) foram criados com fins militares. A Packet Radio Network e a Survivable Adaptive Radio Network buscavam providenciar uma rede móvel no campo de batalha sem infraestrutura.
+                        </p>
+                        <p class="text">
+                            É nos anos 90 que o termo rede ad hoc é adotado pelo sub comitê do IEEE 802.11. Com a popularização de laptops e outros equipamentos de comunicação o interesse em uma rede sem infraestrutura para fins não militares começa a crescer. Assim, são criados grupos que buscavam padronizar protocolos de roteamento das MANET.
+                        </p>
+                    
+                    <h2 class="sub-title">3. Desafios</h2>
+                        <h3 class="sub-sub-title" id="instabilidade">3.1 Instabilidade</h3>
+                            <p class="text">
+                                A natureza altamente dinâmica das redes ad hoc traz um alto grau de instabilidade relacionado. À qualquer momento nós que se comunicavam diretamente podem ficar fora do alcance um do outro, nós podem deixar a rede e outros podem entrar. [Muitas vezes existe um muito ruido e interferência associada]
+                            </p>
+                        <h3 class="sub-sub-title" id="escalabilidade">3.1 Escalabilidade</h3>
+                            <p class="text">
+                                Assim como em redes cabeadas, as redes ad hoc sem fio enfrentam problemas relacionados à escalabilidade. Essa questão envolve o aumento da complexidade e do custo do roteamento relacionado ao aumento do número de nós e mudanças dos enlaces. 
+                            </p>
+                        <h3 class="sub-sub-title" id="seguranca">3.3 Segurança</h3>
+                            <p class="text">
+                                O ambiente potencialmente inseguro em um meio de rádio compartilhado deixa as redes ad hoc suscetíveis à ataques de DoS, com atacantes mais difíceis de serem encontrados do que em redes cabeadas [pesquisar?]. Esses ataques podem ser usados também com o objetivo de esgotar a bateria dos nós da rede.
+                            </p>
+                            <p class="text">
+                                Além disso, como as redes constantemente se organizam e cada nó pode passar repassar pacotes pros outros elas são particularmente suscetíveis à possíveis controles de tráfego maliciosos. 
+                            </p>
+                        <h3 class="sub-sub-title" id="energia">3.1 Energia</h3>
+                            <p class="text">
+                                A rede não assume a existência de uma infraestrutura, então nós individuais podem depender de uma fonte de energia portátil e limitada. Dessa forma se torna necessário a existência de mecanismos de economia de energia.    
+                            </p>                 
+    
+                    <h2 class="sub-title">4. Protocolos</h2>
+                        <h3 class="sub-sub-title">4.1 Protocolos Proativos (Table-driven)</h3>
+                            <h3 class="sub-sub-sub-title" id="dsdv">4.1.1 DSDV</h3>
+                            <h3 class="sub-sub-sub-title" id="olsr">4.1.2 OLSR</h3>
+                        <h3 class="sub-sub-title">4.2 Protocolos Reativos (On-demand)</h3>
+                            <h3 class="sub-sub-sub-title" id="dsr">4.2.1 DSR</h3>
+                            <h3 class="sub-sub-sub-title" id="aodv">4.2.2 AODV</h3>
+                        <h3 class="sub-sub-title">4.3 Protocolos Híbridos</h3>
+                            <h3 class="sub-sub-sub-title" id="zrp">4.3.1 ZRP</h3>
+    
+                    <h2 class="sub-title" id="futuro">5. Futuro da tecnologia</h2>
+                    <h2 class="sub-title" id="conclusao">6. Conclusão</h2>
+                    <h3 class="sub-title" id="perguntas">7. Perguntas</h2>
+                        <h3 class="sub-sub-title">7.1 O que define uma rede Ad Hoc?</h3>
+                        <h3 class="sub-sub-title">7.2 Qual a diferença entre protocolos proativos e reativos das redes Ad Hoc?</h3>
+                    <h3 class="sub-title" id="biblio">8. Bibliografia</h2>
+                        <ol>
+                            <li><p class="text biblio" >
+                                R. Ramanathan e J. Redi, “A brief overview of ad hoc networks: challenges and directions”, IEEE Communications Magazine, vol. 40, nº 5, p. 20–22, maio 2002.
+                            </p></li>
+                            <li><p class="text biblio">
+                                D. Niu, Y. Zhang, Y. Zhao, e M. Yang, “Research on Routing Protocols in Ad Hoc Networks”, in 2009 International Conference on Wireless Networks and Information Systems, 2009.
+                            </p></li>
+                            <li><p class="text biblio">
+                                L. Chi, Z. Hao, C. Yao, Y. Zhang, K. Wang, e Y. Sun, “A Simulation and Research of Routing Protocol for Ad hoc Mobile Networks”, in 2006 IEEE International Conference on Information Acquisition, 2006.
+                            </p></li>
+                            <li><p class="text biblio">
+                                N. Gupta e R. Gupta, “Routing protocols in Mobile Ad-Hoc Networks: An overview”, in INTERACT-2010, 2010.
+                            </p></li>
+                        </ol>
+                </div>
     </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
+
 </html>
